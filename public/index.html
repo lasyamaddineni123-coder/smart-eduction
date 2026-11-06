@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Education System - Learn Smart, Grow Smart</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'><path d='M12 2L1 7l11 5 9-4.09V17h2V7L12 2zM3.45 8.15L12 12l8.55-3.85L12 4.3 3.45 8.15zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.5.1 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Application Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- External Libraries: jsPDF & Canvas Confetti -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================
+       TOAST NOTIFICATION CONTAINER
+       ========================================== -->
+  <div id="toast-container"></div>
+
+  <!-- ==========================================
+       TOP NAVIGATION BAR
+       ========================================== -->
+  <header class="site-header">
+    <div class="container navbar">
+      <!-- Logo -->
+      <a href="#home" class="brand-logo" onclick="navigateTo('home')">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-text">
+          Smart<span>Edu</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home" class="nav-link active" data-section="home"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="#courses" class="nav-link" data-section="courses"><i class="fa-solid fa-book-open"></i> Courses</a></li>
+          <li><a href="#materials" class="nav-link" data-section="materials"><i class="fa-solid fa-file-pdf"></i> Study Materials</a></li>
+          <li><a href="#exams" class="nav-link" data-section="exams"><i class="fa-solid fa-pen-clip"></i> Exams</a></li>
+          <li><a href="#dashboard" class="nav-link" data-section="dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+          <li><a href="#about" class="nav-link" data-section="about"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+          <li><a href="#contact" class="nav-link" data-section="contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="nav-actions">
+        <!-- AI Tutor Quick Button -->
+        <button class="ai-tutor-pill" onclick="navigateTo('ai-tutor')">
+          <span class="ai-pulse-dot"></span>
+          <i class="fa-solid fa-robot"></i> AI Tutor
+        </button>
+
+        <!-- Auth Button (When logged out) -->
+        <button class="btn btn-sm btn-primary" id="nav-auth-btn">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+        </button>
+
+        <!-- User Profile Dropdown (When logged in) -->
+        <div class="user-profile-btn" id="nav-user-dropdown" style="display: none;">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Student" class="user-avatar-mini" id="nav-user-avatar">
+          <span class="user-name-mini" id="nav-user-name">Alex</span>
+          <button style="color: var(--text-muted); font-size: 0.8rem; padding: 2px 6px;" id="logout-btn" title="Logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT CONTAINER
+       ========================================== -->
+  <main>
+
+    <!-- SECTION 1: HOME PAGE -->
+    <section id="section-home" class="page-section">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <div class="container hero-grid">
+          <!-- Left Hero Column -->
+          <div class="hero-left">
+            <div class="hero-badge-pill">
+              <i class="fa-solid fa-sparkles"></i> Next-Generation Digital Learning
+            </div>
+            <h1 class="hero-title">
+              <span class="gradient-text">Learn Smart,</span><br>
+              Grow Smart.
+            </h1>
+            <p class="hero-description">
+              Welcome to the Smart Education System. Unlock your full potential with structured video courses, instant AI tutoring, real-time exam simulations, and verified study notes tailored for your academic success.
+            </p>
+
+            <div class="hero-cta-group">
+              <button class="btn btn-lg btn-primary" onclick="navigateTo('courses')">
+                <i class="fa-solid fa-compass"></i> Explore Courses
+              </button>
+              <button class="btn btn-lg btn-purple" onclick="navigateTo('exams')">
+                <i class="fa-solid fa-pen-to-square"></i> Practice Exam
+              </button>
+              <button class="btn btn-lg btn-secondary" onclick="navigateTo('ai-tutor')">
+                <i class="fa-solid fa-robot"></i> Ask AI Tutor
+              </button>
+            </div>
+
+            <!-- Hero Stats Counter -->
+            <div class="hero-stats-row">
+              <div class="hero-stat-item">
+                <h3>50,000+</h3>
+                <p>Active Students</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>1,200+</h3>
+                <p>Video Lectures</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>98.4%</h3>
+                <p>Exam Pass Rate</p>
+              </div>
+              <div class="hero-stat-item">
+                <h3>4.9 / 5</h3>
+                <p>Student Rating</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Hero Column: Interactive Visual Showcase -->
+          <div class="hero-visual-card">
+            <!-- Floating Card 1: Live Exam Streak -->
+            <div class="hero-floating-card-1">
+              <div style="width: 42px; height: 42px; border-radius: 50%; background: var(--purple-100); color: var(--accent-purple); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                <i class="fa-solid fa-trophy"></i>
+              </div>
+              <div>
+                <h5 style="font-size: 0.9rem; margin-bottom: 2px;">Alex Johnson</h5>
+                <p style="font-size: 0.78rem; color: var(--success); font-weight: 600;">Scored 90% (Grade A+)</p>
+              </div>
+            </div>
+
+            <!-- Main Showcase Card -->
+            <div class="hero-main-card">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80" alt="Students Learning Collaboratively" class="hero-card-img">
+              <div class="hero-card-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span class="badge badge-purple">Live Digital Classroom</span>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-users"></i> 340 Watching</span>
+                </div>
+                <h4>Interactive Full-Stack & AI Learning</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 14px;">Real-time video streaming, synchronized code notes, and automated quizzes.</p>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+                  <span>Lesson 3 of 4 Completed</span>
+                  <span style="font-weight: 700; color: var(--primary);">75%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Card 2: AI Tutor Preview -->
+            <div class="hero-floating-card-2">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 0.95rem;">EduBot AI Tutor</h4>
+                <p style="font-size: 0.8rem; opacity: 0.9;">"Understood recursion in 2 mins!"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Value Grid -->
+      <div class="section-wrapper container">
+        <div class="section-header">
+          <span class="badge badge-purple section-eyebrow">Key Capabilities</span>
+          <h2>Empowering Every Student to Succeed</h2>
+          <p>Everything you need for an unmatched learning journey, built with modern educational technology.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-play"></i>
+            </div>
+            <h3>Online Video Lessons</h3>
+            <p>Access high-definition recorded classes and live streams with lesson playlists, note summaries, and doubt resolution.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <h3>Downloadable Notes & PYQs</h3>
+            <p>Download subject-wise concise revision PDFs, formula sheets, and past examination papers for offline study.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-stopwatch"></i>
+            </div>
+            <h3>Timed Exam Simulator</h3>
+            <p>Multiple-choice tests with automatic grading, instant performance feedback, question explanations, and certificates.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <h3>24/7 AI Learning Mentor</h3>
+            <p>Get difficult concepts explained in plain English, ask for customized 7-day study plans, or generate on-demand quizzes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Courses Showcase Teaser -->
+      <div class="section-wrapper" style="background: var(--bg-muted);">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-primary section-eyebrow">Top Pick Subjects</span>
+            <h2>Popular Online Courses</h2>
+            <p>Hand-crafted curriculum taught by top professors and industry practitioners.</p>
+          </div>
+
+          <div class="filter-bar">
+            <button class="filter-btn active" onclick="navigateTo('courses')">All Subjects</button>
+            <button class="filter-btn" onclick="navigateTo('courses')">Computer Science</button>
+            <button class="filter-btn" onclick="navigateTo('courses')">Artificial Intelligence</button>
+            <button class="filter-btn" onclick="navigateTo('courses')">Engineering Math</button>
+            <button class="filter-btn" onclick="navigateTo('courses')">Quantum Physics</button>
+          </div>
+
+          <div style="text-align: center; margin-top: 36px;">
+            <button class="btn btn-lg btn-purple" onclick="navigateTo('courses')">
+              <i class="fa-solid fa-arrow-right"></i> Browse Full Course Catalog
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials / Success Stories -->
+      <div class="section-wrapper container">
+        <div class="section-header">
+          <span class="badge badge-purple section-eyebrow">Student Testimonials</span>
+          <h2>Loved by 50,000+ Students Worldwide</h2>
+          <p>Read real stories from students who transformed their grades with Smart Education.</p>
+        </div>
+
+        <div class="feedbacks-stream-grid">
+          <div class="feedback-card">
+            <div class="feedback-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="feedback-msg">"The interactive video player and instant AI tutor helped me ace my semester finals! The downloadable notes were right on point."</p>
+            <div class="feedback-author">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" alt="Sophia" class="feedback-avatar">
+              <div>
+                <h5>Sophia Martinez</h5>
+                <p>Computer Science Student</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="feedback-msg">"The online exam simulator with immediate result evaluation and explanations is a game changer. The purple and blue UI is gorgeous!"</p>
+            <div class="feedback-author">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Liam" class="feedback-avatar">
+              <div>
+                <h5>Liam Davies</h5>
+                <p>Aspiring Data Scientist</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="feedback-msg">"I love how easily I can download PDF revision guides. The AI explains tricky math formulas without any confusing jargon. Highly recommended!"</p>
+            <div class="feedback-author">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" alt="Amina" class="feedback-avatar">
+              <div>
+                <h5>Amina Al-Mansoor</h5>
+                <p>High School Senior</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Hero CTA -->
+      <div class="container" style="margin-bottom: 80px;">
+        <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%); border-radius: var(--radius-xl); padding: 50px 40px; text-align: center; color: #ffffff; box-shadow: var(--shadow-xl);">
+          <h2 style="color: #ffffff; font-size: 2.3rem; margin-bottom: 14px;">Ready to Elevate Your Learning?</h2>
+          <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px;">
+            Join thousands of ambitious students mastering STEM, programming, and sciences today. Free registration with full access.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <button class="btn btn-lg btn-secondary" onclick="authController.openAuthModal('register')">
+              <i class="fa-solid fa-user-plus"></i> Create Free Student Account
+            </button>
+            <button class="btn btn-lg btn-purple" style="background: rgba(255, 255, 255, 0.2); border: 1.5px solid rgba(255, 255, 255, 0.5);" onclick="authController.handleDemoLogin()">
+              <i class="fa-solid fa-bolt"></i> Instant Demo Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ONLINE COURSES -->
+    <section id="section-courses" class="page-section" style="display: none;">
+      <div class="section-wrapper container">
+        <div class="section-header">
+          <span class="badge badge-purple section-eyebrow">Curated Academic Catalog</span>
+          <h2>Explore Online Courses</h2>
+          <p>Learn from comprehensive recorded video classes, interactive syllabi, and practice assignments.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="courses-search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="courses-search-input" placeholder="Search courses by title, topic, or instructor...">
+        </div>
+
+        <!-- Category Filters -->
+        <div class="filter-bar">
+          <button class="filter-btn course-filter-btn active" data-category="All">All Subjects</button>
+          <button class="filter-btn course-filter-btn" data-category="Computer Science">Computer Science</button>
+          <button class="filter-btn course-filter-btn" data-category="Artificial Intelligence">AI & Data Science</button>
+          <button class="filter-btn course-filter-btn" data-category="Mathematics">Mathematics</button>
+          <button class="filter-btn course-filter-btn" data-category="Science">Science & Physics</button>
+          <button class="filter-btn course-filter-btn" data-category="Programming">Programming</button>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="courses-grid" id="courses-grid">
+          <!-- Rendered dynamically by courses.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: STUDY MATERIALS -->
+    <section id="section-materials" class="page-section" style="display: none;">
+      <div class="section-wrapper container">
+        <div class="section-header">
+          <span class="badge badge-primary section-eyebrow">Academic Knowledge Base</span>
+          <h2>Verified Study Materials & Notes</h2>
+          <p>Download structured PDF notes, review previous year question papers, and master important exam Q&As.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 30px;">
+          <!-- Type Filter Pills -->
+          <div class="filter-bar" style="margin-bottom: 0;">
+            <button class="filter-btn material-type-btn active" data-type="All">All Materials</button>
+            <button class="filter-btn material-type-btn" data-type="PDF Notes">PDF Notes</button>
+            <button class="filter-btn material-type-btn" data-type="Previous Papers">Previous Papers (PYQs)</button>
+            <button class="filter-btn material-type-btn" data-type="Important Q&A">Important Q&A</button>
+          </div>
+
+          <!-- Subject Dropdown -->
+          <div style="min-width: 200px;">
+            <select class="form-control" id="materials-subject-select" style="padding: 10px 14px;">
+              <option value="All">All Subjects</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Physics">Physics</option>
+              <option value="Artificial Intelligence">Artificial Intelligence</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Materials Grid -->
+        <div class="materials-grid" id="materials-grid">
+          <!-- Rendered dynamically by materials.js -->
+        </div>
+
+        <!-- High-Probability Important Questions Section -->
+        <div style="margin-top: 60px;">
+          <div class="section-header" style="margin-bottom: 24px;">
+            <span class="badge badge-purple section-eyebrow">Fast Revision</span>
+            <h2>Most Important Questions & Answers</h2>
+            <p>Click on any question below to reveal model exam solutions and conceptual key points.</p>
+          </div>
+
+          <div class="qa-accordion" id="important-qa-accordion">
+            <!-- Rendered by materials.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: ONLINE EXAMINATION -->
+    <section id="section-exams" class="page-section" style="display: none;">
+      <div class="section-wrapper container">
+        <div class="section-header">
+          <span class="badge badge-purple section-eyebrow">Self-Assessment Engine</span>
+          <h2>Online Examination & MCQ Quizzes</h2>
+          <p>Challenge yourself with real-time timed multiple-choice tests, automatic grading, and certificate awards.</p>
+        </div>
+
+        <!-- Examination Catalog -->
+        <div class="exams-catalog-grid" id="exams-catalog-grid">
+          <!-- Rendered dynamically by exams.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: STUDENT DASHBOARD -->
+    <section id="section-dashboard" class="page-section" style="display: none;">
+      <div class="section-wrapper container">
+        <!-- Student Hero Banner -->
+        <div class="dashboard-hero">
+          <div class="dashboard-user-info">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Student Avatar" class="dashboard-avatar" id="dash-user-avatar">
+            <div>
+              <h2 id="dash-user-name">Alex Johnson</h2>
+              <p id="dash-user-role">Undergraduate - 2nd Year &bull; Computer Science & AI</p>
+              <div style="margin-top: 8px;">
+                <span class="badge" style="background: rgba(255, 255, 255, 0.2); color: #ffffff;">
+                  <i class="fa-solid fa-calendar-check"></i> Enrolled: January 2026
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+            <button class="btn btn-secondary" id="edit-profile-btn">
+              <i class="fa-solid fa-user-pen"></i> Edit Profile
+            </button>
+            <button class="btn btn-purple" onclick="navigateTo('courses')">
+              <i class="fa-solid fa-graduation-cap"></i> Browse More Courses
+            </button>
+          </div>
+        </div>
+
+        <!-- Dashboard Metrics Grid -->
+        <div class="dashboard-metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon-box metric-icon-blue">
+              <i class="fa-solid fa-book"></i>
+            </div>
+            <div class="metric-info">
+              <h3 id="metric-courses-enrolled">3</h3>
+              <p>Enrolled Courses</p>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box metric-icon-purple">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="metric-info">
+              <h3 id="metric-lessons-completed">9</h3>
+              <p>Completed Lessons</p>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box metric-icon-green">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="metric-info">
+              <h3 id="metric-avg-score">85%</h3>
+              <p>Avg. Exam Score</p>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon-box metric-icon-orange">
+              <i class="fa-solid fa-fire"></i>
+            </div>
+            <div class="metric-info">
+              <h3 id="dash-user-streak">7 Days 🔥</h3>
+              <p>Current Study Streak</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Column Layout: Enrolled Courses & Daily Targets -->
+        <div class="dashboard-grid-2col">
+          <!-- Column 1: Enrolled Courses -->
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h3><i class="fa-solid fa-graduation-cap" style="color: var(--primary);"></i> My Enrolled Courses</h3>
+              <a href="#courses" onclick="navigateTo('courses')" style="font-size: 0.88rem; font-weight: 600;">View All</a>
+            </div>
+            <div id="dash-enrolled-courses-list">
+              <!-- Rendered by dashboard.js -->
+            </div>
+          </div>
+
+          <!-- Column 2: Daily Study Targets & Goals -->
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <h3><i class="fa-solid fa-bullseye" style="color: var(--accent-purple);"></i> Daily Learning Goals</h3>
+              <span class="badge badge-purple">Today</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <label class="goal-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-main); border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                <input type="checkbox" class="dash-goal-checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                <span style="font-size: 0.92rem; font-weight: 500;">Watch 1 Video Lesson in Web Development</span>
+              </label>
+
+              <label class="goal-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-main); border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                <input type="checkbox" class="dash-goal-checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                <span style="font-size: 0.92rem; font-weight: 500;">Ask EduBot to clarify a math calculus formula</span>
+              </label>
+
+              <label class="goal-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-main); border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                <input type="checkbox" class="dash-goal-checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+                <span style="font-size: 0.92rem; font-weight: 500; text-decoration: line-through; opacity: 0.6;">Review Python Notes & PYQ 2024</span>
+              </label>
+
+              <label class="goal-item" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-main); border-radius: var(--radius-sm); border: 1px solid var(--border-light); cursor: pointer;">
+                <input type="checkbox" class="dash-goal-checkbox" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                <span style="font-size: 0.92rem; font-weight: 500;">Complete 1 Online Practice Test (10 MCQs)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badges & Achievements Section -->
+        <div class="dash-panel" style="margin-bottom: 36px;">
+          <div class="dash-panel-header">
+            <h3><i class="fa-solid fa-medal" style="color: #f59e0b;"></i> Unlocked Badges & Milestones</h3>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Earn more by completing tests</span>
+          </div>
+          <div class="badges-container" id="dash-badges-container">
+            <!-- Rendered by dashboard.js -->
+          </div>
+        </div>
+
+        <!-- Exam Performance History Table -->
+        <div class="dash-panel">
+          <div class="dash-panel-header">
+            <h3><i class="fa-solid fa-clock-rotate-left" style="color: var(--primary);"></i> Recent Exam Results</h3>
+            <button class="btn btn-sm btn-purple" onclick="navigateTo('exams')">
+              <i class="fa-solid fa-plus"></i> Take New Exam
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>Exam Title</th>
+                  <th>Date</th>
+                  <th>Score (%)</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="dash-exam-results-tbody">
+                <!-- Rendered by dashboard.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: AI LEARNING ASSISTANT ("EduBot") -->
+    <section id="section-ai-tutor" class="page-section" style="display: none;">
+      <div class="section-wrapper container">
+        <div class="section-header">
+          <span class="badge badge-purple section-eyebrow">Personalized AI Mentor</span>
+          <h2>AI Learning Assistant</h2>
+          <p>Get difficult topics explained in plain language, request tailored study plans, or practice on-the-fly quizzes.</p>
+        </div>
+
+        <div class="ai-tutor-container">
+          <!-- Left AI Sidebar -->
+          <div class="ai-sidebar">
+            <div class="ai-bot-profile">
+              <div class="ai-avatar-large">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <h3 style="font-size: 1.25rem;">EduBot AI</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Always online &bull; Ready to help</p>
+            </div>
+
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase;">
+              💡 Quick Questions:
+            </div>
+            <div class="ai-prompt-chips">
+              <button class="prompt-chip">🔄 Explain recursion in simple terms</button>
+              <button class="prompt-chip">📅 Give me a 7-day study plan</button>
+              <button class="prompt-chip">🎯 Quiz me with 3 questions</button>
+              <button class="prompt-chip">⚛️ Explain quantum superposition</button>
+              <button class="prompt-chip">🗄️ Difference between SQL and NoSQL</button>
+            </div>
+          </div>
+
+          <!-- Right AI Chat Area -->
+          <div class="ai-chat-area">
+            <div class="ai-chat-messages" id="ai-chat-messages">
+              <div class="chat-bubble bot">
+                <div class="bubble-avatar bot-avatar">
+                  <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="bubble-text">
+                  <h4 style="font-size: 1.1rem; color: var(--accent-purple); margin-bottom: 6px;">👋 Hello! I am EduBot, your Smart AI Tutor.</h4>
+                  <p>How can I assist your learning today? You can ask me to explain tricky topics, break down formulas, generate study plans, or quiz you on any subject!</p>
+                </div>
+              </div>
+            </div>
+
+            <form class="ai-input-bar" id="ai-chat-form">
+              <input type="text" id="ai-chat-input" placeholder="Ask EduBot anything (e.g., 'Explain calculus derivatives with an analogy')..." autocomplete="off">
+              <button type="submit" class="btn btn-purple" style="border-radius: var(--radius-full); padding: 12px 20px;">
+                <i class="fa-solid fa-paper-plane"></i> Send
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: ABOUT US -->
+    <section id="section-about" class="page-section" style="display: none;">
+      <div class="section-wrapper container">
+        <div class="section-header">
+          <span class="badge badge-purple section-eyebrow">Our Mission & Vision</span>
+          <h2>Transforming Education with Digital Innovation</h2>
+          <p>We are on a mission to make world-class learning accessible, interactive, and effective for every student across the globe.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 60px;">
+          <div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 16px;">Empowering Students to Learn Faster & Smarter</h3>
+            <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 18px;">
+              Founded with the goal of democratizing high-quality STEM and digital education, SmartEdu integrates multimedia video lessons, downloadable study guides, verified previous examination papers, and AI-driven personalized feedback into a single, cohesive platform.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center;">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <span style="font-weight: 600;">Strictly verified academic curriculum & accredited syllabus.</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center;">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <span style="font-weight: 600;">Real-time automated MCQ evaluation with step-by-step explanations.</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center;">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <span style="font-weight: 600;">Dedicated 24/7 AI tutor and responsive peer doubts forum.</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80" alt="Students studying together" style="border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); width: 100%;">
+          </div>
+        </div>
+
+        <!-- Numbers -->
+        <div class="about-stats-grid">
+          <div class="about-stat-card">
+            <h3>50,000+</h3>
+            <p style="font-weight: 600; color: var(--text-main);">Graduates & Learners</p>
+          </div>
+          <div class="about-stat-card">
+            <h3>1,200+</h3>
+            <p style="font-weight: 600; color: var(--text-main);">Curated Video Lessons</p>
+          </div>
+          <div class="about-stat-card">
+            <h3>40+</h3>
+            <p style="font-weight: 600; color: var(--text-main);">Distinguished Faculty</p>
+          </div>
+          <div class="about-stat-card">
+            <h3>98%</h3>
+            <p style="font-weight: 600; color: var(--text-main);">Exam Success Rate</p>
+          </div>
+        </div>
+
+        <!-- Distinguished Faculty Showcase -->
+        <div style="margin-top: 60px;">
+          <div class="section-header">
+            <span class="badge badge-primary section-eyebrow">Academic Mentors</span>
+            <h2>Meet Our Expert Instructors</h2>
+            <p>Distinguished researchers, authors, and industry pioneers dedicated to your academic growth.</p>
+          </div>
+
+          <div class="team-grid">
+            <div class="team-card">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="Prof. David Miller">
+              <h4>Prof. David Miller</h4>
+              <p>Senior Software Architect & Full-Stack Lead</p>
+            </div>
+            <div class="team-card">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200" alt="Dr. Sarah Chen">
+              <h4>Dr. Sarah Chen</h4>
+              <p>AI Research Scientist & Machine Learning Lead</p>
+            </div>
+            <div class="team-card">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200" alt="Prof. Marcus Thorne">
+              <h4>Prof. Marcus Thorne</h4>
+              <p>Chair of Pure & Applied Mathematics</p>
+            </div>
+            <div class="team-card">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200" alt="Dr. Elena Rostova">
+              <h4>Dr. Elena Rostova</h4>
+              <p>Quantum Physics Fellow & CERN Contributor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: CONTACT & FEEDBACK -->
+    <section id="section-contact" class="page-section" style="display: none;">
+      <div class="section-wrapper container">
+        <div class="section-header">
+          <span class="badge badge-purple section-eyebrow">Get in Touch</span>
+          <h2>Contact Us & Share Feedback</h2>
+          <p>Have an inquiry, need counseling, or want to share feedback? We are here to support you 24/7.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Contact Form -->
+          <div class="contact-form-card">
+            <h3 style="font-size: 1.4rem; margin-bottom: 20px;">Send Us a Message</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Your Full Name</label>
+                <input type="text" class="form-control" id="contact-name" placeholder="e.g. Alex Johnson" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-email">Email Address</label>
+                <input type="email" class="form-control" id="contact-email" placeholder="alex.student@smartedu.com" required>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label" for="contact-category">Inquiry Type</label>
+                  <select class="form-control" id="contact-category">
+                    <option value="Course Inquiry">Course Inquiry</option>
+                    <option value="Exam Assistance">Exam Assistance</option>
+                    <option value="Technical Support">Technical Support</option>
+                    <option value="Academic Counseling">Academic Counseling</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contact-subject">Subject</label>
+                  <input type="text" class="form-control" id="contact-subject" placeholder="e.g. Enrolling in Machine Learning" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-message">Your Message / Question</label>
+                <textarea class="form-control" id="contact-message" rows="4" placeholder="How can we help you succeed?" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-purple" style="width: 100%;">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Right: Direct Contact Info Cards -->
+          <div class="contact-info-cards">
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Email Support</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 2px;">support@smartedu.com</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Response time: under 2 hours</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Toll-Free Student Hotline</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 2px;">+1 (800) 555-SMART (7627)</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Available Mon - Sat, 8 AM - 8 PM</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Academic Campus & Office</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 2px;">SmartEdu Innovation Center, Tech Corridor</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Building 4, Suite 200, California, USA</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-info-icon">
+                <i class="fa-solid fa-comments"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Instant AI Assistance</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 2px;">EduBot is active 24/7</p>
+                <a href="#ai-tutor" onclick="navigateTo('ai-tutor')" style="font-size: 0.85rem; font-weight: 700;">Open AI Tutor &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Feedback Submission Section -->
+        <div style="background: #ffffff; border-radius: var(--radius-xl); padding: 40px; border: 1px solid var(--border-light); box-shadow: var(--shadow-md); margin-bottom: 50px;">
+          <div style="max-width: 680px; margin: 0 auto; text-align: center;">
+            <span class="badge badge-primary" style="margin-bottom: 12px;">Student Voice</span>
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Leave Your Review & Feedback</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">How was your experience learning on SmartEdu? Your feedback guides our continuous improvement.</p>
+
+            <form id="student-feedback-form">
+              <!-- Star Rating Input -->
+              <div style="margin-bottom: 16px;">
+                <label style="font-size: 0.9rem; font-weight: 600; display: block; margin-bottom: 8px;">Your Rating:</label>
+                <div class="star-rating-select" id="feedback-star-selector" style="justify-content: center;">
+                  <i class="fa-solid fa-star selected" data-value="1"></i>
+                  <i class="fa-solid fa-star selected" data-value="2"></i>
+                  <i class="fa-solid fa-star selected" data-value="3"></i>
+                  <i class="fa-solid fa-star selected" data-value="4"></i>
+                  <i class="fa-solid fa-star selected" data-value="5"></i>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                <input type="text" class="form-control" id="feedback-name" placeholder="Your Name (e.g. Alex Johnson)">
+                <input type="text" class="form-control" id="feedback-role" placeholder="Your Role / Subject (e.g. CS Student)">
+              </div>
+
+              <div class="form-group">
+                <textarea class="form-control" id="feedback-message" rows="3" placeholder="Share your experience with courses, exams, notes, or the AI tutor..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-purple">
+                <i class="fa-solid fa-star"></i> Submit Review
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Live Student Testimonial Stream -->
+        <div>
+          <h3 style="font-size: 1.4rem; margin-bottom: 20px;"><i class="fa-solid fa-comments" style="color: var(--accent-purple);"></i> Recent Student Reviews</h3>
+          <div class="feedbacks-stream-grid" id="feedbacks-stream-grid">
+            <!-- Rendered by contact.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       MODALS
+       ========================================== -->
+
+  <!-- 1. AUTHENTICATION MODAL (LOGIN & REGISTER) -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="display: flex; gap: 16px;">
+          <button class="filter-btn active" id="tab-btn-login">Student Login</button>
+          <button class="filter-btn" id="tab-btn-register">New Registration</button>
+        </div>
+        <button class="modal-close-btn" id="auth-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Login Section -->
+        <div id="auth-section-login">
+          <form id="login-form">
+            <div class="form-group">
+              <label class="form-label" for="login-email">Email Address</label>
+              <input type="email" class="form-control" id="login-email" placeholder="alex.student@smartedu.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="login-password">Password</label>
+              <input type="password" class="form-control" id="login-password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 14px;">
+              <i class="fa-solid fa-right-to-bracket"></i> Login to Dashboard
+            </button>
+          </form>
+
+          <!-- Quick 1-Click Demo Login -->
+          <div style="text-align: center; padding-top: 14px; border-top: 1px solid var(--border-light);">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Want to test drive instantly?</p>
+            <button class="btn btn-secondary btn-sm" id="demo-login-btn" style="width: 100%;">
+              <i class="fa-solid fa-bolt" style="color: #f59e0b;"></i> 1-Click Demo Login as Alex Johnson
+            </button>
+          </div>
+        </div>
+
+        <!-- Register Section -->
+        <div id="auth-section-register" style="display: none;">
+          <form id="register-form">
+            <div class="form-group">
+              <label class="form-label" for="register-name">Full Name</label>
+              <input type="text" class="form-control" id="register-name" placeholder="Alex Johnson" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="register-email">Email Address</label>
+              <input type="email" class="form-control" id="register-email" placeholder="alex@example.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="register-password">Create Password</label>
+              <input type="password" class="form-control" id="register-password" placeholder="At least 6 characters" required minlength="6">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <div class="form-group">
+                <label class="form-label" for="register-grade">Education Level</label>
+                <select class="form-control" id="register-grade">
+                  <option value="High School">High School</option>
+                  <option value="Undergraduate" selected>Undergraduate</option>
+                  <option value="Postgraduate">Postgraduate</option>
+                  <option value="Self-Learner">Self-Learner</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="register-major">Target Subject / Major</label>
+                <input type="text" class="form-control" id="register-major" placeholder="e.g. Computer Science">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-purple" style="width: 100%;">
+              <i class="fa-solid fa-user-plus"></i> Create Student Account
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. STUDENT PROFILE EDIT MODAL -->
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-user-gear" style="color: var(--primary);"></i> Edit Student Profile</h3>
+        <button class="modal-close-btn" id="profile-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="profile-edit-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="edit-profile-name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Grade / Academic Level</label>
+            <input type="text" class="form-control" id="edit-profile-grade" placeholder="e.g. Undergraduate - 2nd Year">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Target Major</label>
+            <input type="text" class="form-control" id="edit-profile-major" placeholder="e.g. Computer Science & AI">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="authController.closeProfileModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. INTERACTIVE VIDEO CLASSROOM MODAL -->
+  <div class="modal-overlay" id="classroom-modal">
+    <div class="modal-content modal-xl">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-purple" id="classroom-category-badge">Computer Science</span>
+          <h3 id="classroom-course-title" style="margin-top: 4px;">Modern Full-Stack Web Development</h3>
+        </div>
+        <button class="modal-close-btn" id="classroom-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="classroom-layout">
+        <!-- Player Area -->
+        <div class="classroom-player-area">
+          <div class="video-container">
+            <video id="classroom-video" controls poster="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000">
+              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: gap;">
+            <div>
+              <h2 id="classroom-lesson-title" style="font-size: 1.4rem; margin-bottom: 4px;">HTML5 Semantic Structure</h2>
+              <p style="font-size: 0.88rem; color: var(--text-muted);">
+                <i class="fa-regular fa-clock"></i> <span id="classroom-lesson-duration">24 mins</span> &bull; Instructor: <strong id="classroom-instructor-name">Prof. David Miller</strong>
+              </p>
+            </div>
+            <button class="btn btn-primary" id="btn-mark-lesson-complete">
+              <i class="fa-solid fa-check"></i> Mark Lesson as Complete
+            </button>
+          </div>
+
+          <!-- Classroom Tabs -->
+          <div class="classroom-tabs">
+            <button class="classroom-tab-btn active" data-tab="overview">Lesson Overview</button>
+            <button class="classroom-tab-btn" data-tab="notes">Notes & Key Formulas</button>
+            <button class="classroom-tab-btn" data-tab="doubts">Ask Doubt / Discussion</button>
+          </div>
+
+          <!-- Tab 1: Overview -->
+          <div class="classroom-tab-content active" id="classroom-tab-overview">
+            <p id="classroom-lesson-summary" style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary);">
+              Introduction to semantic markup, accessibility (a11y), clean document tree, and modern HTML best practices.
+            </p>
+          </div>
+
+          <!-- Tab 2: Notes -->
+          <div class="classroom-tab-content" id="classroom-tab-notes">
+            <div style="background: var(--bg-main); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); font-size: 0.92rem; line-height: 1.7;">
+              <p id="classroom-lesson-notes-text"></p>
+            </div>
+          </div>
+
+          <!-- Tab 3: Doubts -->
+          <div class="classroom-tab-content" id="classroom-tab-doubts">
+            <form id="classroom-doubt-form" style="display: flex; gap: 10px; margin-bottom: 16px;">
+              <input type="text" class="form-control" id="classroom-doubt-input" placeholder="Type your doubt or question about this lesson..." required>
+              <button type="submit" class="btn btn-purple"><i class="fa-solid fa-paper-plane"></i> Ask</button>
+            </form>
+            <div id="classroom-doubts-list">
+              <div style="padding: 12px 14px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border-light); margin-bottom: 10px; font-size: 0.9rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                  <strong style="color: var(--primary);"><i class="fa-solid fa-chalkboard-user"></i> Teaching Assistant</strong>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">2 hours ago</span>
+                </div>
+                <p style="color: var(--text-main);">Welcome to this module! Remember to practice the code examples in the notes tab.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Playlist -->
+        <div class="classroom-sidebar">
+          <div class="sidebar-header">
+            <h4 style="font-size: 1rem; font-weight: 700;"><i class="fa-solid fa-list-ol"></i> Course Playlist</h4>
+          </div>
+          <div class="playlist-items" id="classroom-playlist">
+            <!-- Rendered by courses.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. STUDY MATERIAL PREVIEW MODAL -->
+  <div class="modal-overlay" id="material-preview-modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-purple" id="preview-modal-subject">Computer Science</span>
+          <span class="badge badge-primary" id="preview-modal-type">PDF Notes</span>
+          <h3 id="preview-modal-title" style="margin-top: 6px;">Material Title</h3>
+        </div>
+        <button class="modal-close-btn" id="material-preview-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="preview-modal-content">
+        <!-- Rendered by materials.js -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="materialsController.closePreviewModal()">Close</button>
+        <button type="button" class="btn btn-purple" id="modal-download-btn">
+          <i class="fa-solid fa-download"></i> Download Printable Document
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. LIVE ONLINE EXAMINATION MODAL -->
+  <div class="modal-overlay" id="exam-modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3 id="live-exam-title"><i class="fa-solid fa-pen-nib" style="color: var(--primary);"></i> Live Examination</h3>
+        <button class="modal-close-btn" id="exam-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="exam-simulator-view">
+          <!-- Main Question Panel -->
+          <div class="exam-main-panel">
+            <div class="exam-timer-bar">
+              <span style="font-weight: 700; color: var(--text-secondary);">
+                <i class="fa-solid fa-clock"></i> Time Remaining:
+              </span>
+              <div class="exam-timer-clock" id="exam-timer-clock">
+                <i class="fa-regular fa-clock"></i> 10:00
+              </div>
+            </div>
+
+            <div class="exam-question-card">
+              <div class="exam-q-header" id="exam-question-number">Question 1 of 10</div>
+              <p class="exam-q-text" id="exam-question-text">Loading question...</p>
+            </div>
+
+            <!-- Options -->
+            <div class="exam-options-list" id="exam-options-container">
+              <!-- Rendered by exams.js -->
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="exam-nav-actions">
+              <button class="btn btn-secondary" id="exam-btn-prev">
+                <i class="fa-solid fa-arrow-left"></i> Previous
+              </button>
+              <button class="btn btn-outline-purple" id="exam-btn-flag">
+                <i class="fa-regular fa-flag"></i> Flag
+              </button>
+              <button class="btn btn-primary" id="exam-btn-next">
+                Next <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question Palette Sidebar -->
+          <div class="exam-palette-sidebar">
+            <h4 class="palette-title">Question Palette</h4>
+            <div class="palette-grid" id="exam-palette-grid">
+              <!-- Palette items 1-10 rendered by exams.js -->
+            </div>
+
+            <div style="font-size: 0.78rem; display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="width: 12px; height: 12px; background: var(--success); border-radius: 2px;"></span> Answered
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="width: 12px; height: 12px; background: var(--warning); border-radius: 2px;"></span> Flagged
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="width: 12px; height: 12px; background: #ffffff; border: 1px solid var(--border-light); border-radius: 2px;"></span> Unanswered
+              </div>
+            </div>
+
+            <button class="btn btn-purple" id="exam-btn-submit" style="width: 100%; margin-top: auto;">
+              <i class="fa-solid fa-paper-plane"></i> Submit Exam
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. EXAM RESULT & CERTIFICATE MODAL -->
+  <div class="modal-overlay" id="exam-result-modal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-award" style="color: #f59e0b;"></i> Examination Performance Analysis</h3>
+        <button class="modal-close-btn" id="result-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="exam-result-card">
+          <div class="result-circle-badge">
+            <h2 id="result-score-percent">90%</h2>
+            <p>FINAL SCORE</p>
+          </div>
+
+          <h3 id="result-exam-title" style="font-size: 1.6rem; margin-bottom: 6px;">Python Programming Mastery</h3>
+          <span class="badge badge-success" id="result-grade-tag" style="font-size: 0.9rem; padding: 6px 16px;">Grade: A+ (Passed)</span>
+
+          <div class="result-stats-row">
+            <div class="result-stat-box">
+              <h4 id="result-correct-count">9 / 10</h4>
+              <p>Correct Answers</p>
+            </div>
+            <div class="result-stat-box">
+              <h4>100%</h4>
+              <p>Passing Threshold</p>
+            </div>
+            <div class="result-stat-box">
+              <h4 id="result-time-spent">08:45</h4>
+              <p>Time Taken</p>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 24px;">
+            <button class="btn btn-purple btn-lg" id="btn-download-certificate">
+              <i class="fa-solid fa-certificate"></i> Download Official Certificate
+            </button>
+            <button class="btn btn-secondary btn-lg" id="btn-retake-exam">
+              <i class="fa-solid fa-rotate-right"></i> Retake Exam
+            </button>
+          </div>
+
+          <!-- Question-by-Question Detailed Review -->
+          <div style="text-align: left; border-top: 1px solid var(--border-light); padding-top: 24px;">
+            <h4 style="font-size: 1.2rem; margin-bottom: 14px;">Detailed Answer Explanations</h4>
+            <div id="result-review-list" class="result-review-list">
+              <!-- Rendered by exams.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FLOATING AI ASSISTANT WIDGET
+       ========================================== -->
+  <div class="floating-ai-btn" id="floating-ai-trigger" title="Ask AI Tutor">
+    <i class="fa-solid fa-robot"></i>
+  </div>
+
+  <div class="modal-overlay" id="floating-ai-modal">
+    <div class="modal-content" style="max-width: 480px; height: 580px;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent-purple)); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1rem;">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div>
+            <h4 style="font-size: 1rem; margin-bottom: 0;">EduBot AI Tutor</h4>
+            <p style="font-size: 0.75rem; color: var(--success);"><i class="fa-solid fa-circle" style="font-size: 0.5rem;"></i> Active Now</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="floating-ai-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="ai-chat-messages" id="floating-ai-messages" style="flex: 1; overflow-y: auto; padding: 16px;">
+        <div class="chat-bubble bot">
+          <div class="bubble-avatar bot-avatar"><i class="fa-solid fa-robot"></i></div>
+          <div class="bubble-text">
+            <p>Hi! Need a quick concept explanation, formula breakdown, or study tip? Ask me anything!</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="ai-input-bar" id="floating-ai-form">
+        <input type="text" id="floating-ai-input" placeholder="Type your doubt..." autocomplete="off">
+        <button type="submit" class="btn btn-purple" style="border-radius: var(--radius-full); padding: 10px 18px;">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MOBILE BOTTOM NAVIGATION BAR
+       ========================================== -->
+  <nav class="mobile-bottom-nav">
+    <a href="#home" class="mobile-nav-item active" data-section="home">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+    <a href="#courses" class="mobile-nav-item" data-section="courses">
+      <i class="fa-solid fa-book-open"></i>
+      <span>Courses</span>
+    </a>
+    <a href="#materials" class="mobile-nav-item" data-section="materials">
+      <i class="fa-solid fa-file-pdf"></i>
+      <span>Notes</span>
+    </a>
+    <a href="#exams" class="mobile-nav-item" data-section="exams">
+      <i class="fa-solid fa-pen-clip"></i>
+      <span>Exams</span>
+    </a>
+    <a href="#ai-tutor" class="mobile-nav-item" data-section="ai-tutor">
+      <i class="fa-solid fa-robot"></i>
+      <span>AI Tutor</span>
+    </a>
+    <a href="#dashboard" class="mobile-nav-item" data-section="dashboard">
+      <i class="fa-solid fa-chart-pie"></i>
+      <span>Dashboard</span>
+    </a>
+  </nav>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Col 1: Brand Info -->
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo" onclick="navigateTo('home')">
+            <div class="brand-icon-box">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="brand-text" style="color: #ffffff;">
+              Smart<span style="color: var(--accent-purple-light);">Edu</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            Empowering students with interactive video courses, verified study materials, real-time exam simulations, and personalized AI mentoring.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#home" onclick="navigateTo('home')">Home</a></li>
+            <li><a href="#courses" onclick="navigateTo('courses')">Online Courses</a></li>
+            <li><a href="#materials" onclick="navigateTo('materials')">Study Materials & Notes</a></li>
+            <li><a href="#exams" onclick="navigateTo('exams')">Online Examinations</a></li>
+            <li><a href="#dashboard" onclick="navigateTo('dashboard')">Student Dashboard</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Subjects -->
+        <div class="footer-col">
+          <h4>Subjects</h4>
+          <ul class="footer-links">
+            <li><a href="#courses" onclick="navigateTo('courses')">Computer Science & AI</a></li>
+            <li><a href="#courses" onclick="navigateTo('courses')">Calculus & Mathematics</a></li>
+            <li><a href="#courses" onclick="navigateTo('courses')">Modern Quantum Physics</a></li>
+            <li><a href="#courses" onclick="navigateTo('courses')">Cybersecurity Essentials</a></li>
+            <li><a href="#courses" onclick="navigateTo('courses')">Data Structures & Algorithms</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Newsletter -->
+        <div class="footer-col">
+          <h4>Stay Connected</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 14px; color: #94a3b8;">
+            Get weekly revision sheets, exam notifications, and AI study tips directly to your inbox.
+          </p>
+          <div style="display: flex; gap: 8px;">
+            <input type="email" placeholder="Your email address" class="form-control" style="background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.15); color: #ffffff; padding: 10px 14px; font-size: 0.88rem;">
+            <button class="btn btn-purple btn-sm" onclick="showToast('Subscribed to academic updates! 📬', 'success')">
+              Join
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Smart Education System. All rights reserved. &bull; "Learn Smart, Grow Smart."
+        </div>
+        <div style="display: flex; gap: 20px;">
+          <a href="#about" onclick="navigateTo('about')">About Us</a>
+          <a href="#contact" onclick="navigateTo('contact')">Privacy Policy</a>
+          <a href="#contact" onclick="navigateTo('contact')">Terms of Service</a>
+          <a href="#contact" onclick="navigateTo('contact')">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       APPLICATION SCRIPTS
+       ========================================== -->
+  <script src="js/default-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/courses.js"></script>
+  <script src="js/materials.js"></script>
+  <script src="js/exams.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/ai-tutor.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
